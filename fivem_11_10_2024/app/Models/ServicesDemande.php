@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ServicesDemande extends Model
 {
-	protected $table = 'APP_services_demandes';
+	// protected $table = 'APP_services_demandes';
 	public $incrementing = false;
 	public $timestamps = false;
 

@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Role extends Model
 {
-	protected $table = 'APP_roles';
+	// protected $table = 'APP_roles';
 	protected $primaryKey = 'id_role';
 	public $timestamps = false;
 

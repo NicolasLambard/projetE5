@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Service extends Model
 {
-	protected $table = 'APP_services';
+	// protected $table = 'APP_services';
 	protected $primaryKey = 'id_service';
 	public $timestamps = false;
 

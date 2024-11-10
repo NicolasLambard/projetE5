@@ -23,10 +23,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property User $user
  *
  * @package App\Models
- */
+ */	
 class Commentaire extends Model
 {
-	protected $table = 'APP_commentaires';
+	// protected $table = 'APP_commentaires';
 	protected $primaryKey = 'id_commentaire';
 	public $timestamps = false;
 

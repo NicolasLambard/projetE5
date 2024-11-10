@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Fichier extends Model
 {
-	protected $table = 'APP_fichiers';
+	// protected $table = 'APP_fichiers';
 	protected $primaryKey = 'id_fichier';
 	public $timestamps = false;
 
