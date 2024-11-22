@@ -13,6 +13,7 @@
             <ul>
                 <li><a href="{{ url('/') }}">Accueil</a></li>
                 <li><a href="{{ url('/services') }}">Service</a></li>
+                <li><a href="{{ route('demande') }}">Faire une demande</a></li>
             </ul>
         </nav>
     </header>
@@ -25,25 +26,35 @@
     <main>
         <section class="form-section">
             <h2>Formulaire de Demande de Service</h2>
-            <form action="{{ url('/soumettre-demande') }}" method="POST">
-                {{ csrf_field() }}
-                
+
+            <!-- Message de succès après soumission -->
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            <!-- Formulaire de soumission de demande -->
+            <form action="{{ route('demande.submit') }}" method="POST">
+                @csrf
+                <!-- Champs du formulaire -->
                 <label for="description">Description du service souhaité :</label>
-                <textarea id="description" name="description" required></textarea>
+                <textarea id="description" name="description" required>{{ old('description') }}</textarea>
                 
                 <label for="date">Date souhaitée :</label>
-                <input type="date" id="date" name="date" required>
+                <input type="date" id="date" name="date" value="{{ old('date') }}" required>
                 
+                <!-- Menu déroulant pour sélectionner un service -->
                 <label for="services">Sélectionnez le service :</label>
                 <select id="services" name="services" required>
                     <option value="">-- Choisissez un service --</option>
-                    <option value="environnement">Création d'Environnement Sur Mesure</option>
-                    <option value="debugging">Débogage de Script</option>
-                    <option value="custom-dev">Développement Sur Mesure</option>
+                    @foreach($services as $service)
+                        <option value="{{ $service->service_id }}">{{ $service->nom_service }}</option>
+                    @endforeach
                 </select>
                 
                 <label for="tarif">Proposition de tarif (optionnel) :</label>
-                <input type="number" id="tarif" name="tarif" placeholder="Tarif proposé en euros">
+                <input type="number" id="tarif" name="tarif" placeholder="Tarif proposé en euros" value="{{ old('tarif') }}">
                 
                 <button type="submit">Soumettre la Demande</button>
             </form>
@@ -51,7 +62,7 @@
     </main>
 
     <footer>
-        <p>&copy; <?php echo date('Y'); ?> ShadyCorp. Tous droits réservés.</p>
+        <p>&copy; {{ date('Y') }} ShadyCorp. Tous droits réservés.</p>
     </footer>
 </body>
 </html>

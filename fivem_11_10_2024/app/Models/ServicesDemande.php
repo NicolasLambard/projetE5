@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
@@ -23,27 +19,35 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ServicesDemande extends Model
 {
-	// protected $table = 'APP_services_demandes';
-	public $incrementing = false;
-	public $timestamps = false;
 
-	protected $casts = [
-		'id_service' => 'int',
-		'id_demande' => 'int'
-	];
+    protected $table = 'services_demandes'; 
+    public $incrementing = false;
+    public $timestamps = false;
 
-	public function demande()
-	{
-		return $this->belongsTo(Demande::class, 'id_demande');
-	}
+    protected $casts = [
+        'id_service' => 'int',
+        'id_demande' => 'int'
+    ];
 
-	public function service()
-	{
-		return $this->belongsTo(Service::class, 'id_service');
-	}
+    protected $fillable = [
+        'id_service',
+        'id_demande'
+    ];
 
-	public function suivis()
-	{
-		return $this->hasMany(Suivi::class, 'id_service_APP_services_demandes');
-	}
+
+    public function demande()
+    {
+        return $this->belongsTo(Demande::class, 'id_demande');
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'id_service');
+    }
+
+ 
+    public function suivis()
+    {
+        return $this->hasMany(Suivi::class, 'id_service_APP_services_demandes');
+    }
 }
