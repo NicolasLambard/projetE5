@@ -9,6 +9,9 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ChatBox;
+
+
 
 /**
  * Class Demande
@@ -34,57 +37,67 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Demande extends Model
 {
-	protected $table = 'APP_demandes';
-	protected $primaryKey = 'id_demande';
-	public $timestamps = false;
+    
+    protected $primaryKey = 'id_demande';
+    public $timestamps = false;
 
-	protected $casts = [
-		'date_commande' => 'datetime',
-		'date_resultat' => 'datetime',
-		'prix' => 'float',
-		'date_travail' => 'datetime',
-		'id' => 'int',
-		'id_status' => 'int'
-	];
+    protected $casts = [
+        'date_commande' => 'datetime',
+        'date_resultat' => 'datetime',
+        'prix' => 'float',
+        'date_travail' => 'datetime',
+    ];
 
-	protected $fillable = [
-		'description_demande',
-		'date_commande',
-		'description_resultat',
-		'date_resultat',
-		'prix',
-		'date_travail',
-		'id',
-		'id_status'
-	];
+    protected $attributes = [
+        'id_status' => 1, // Statut "en cours" par défaut
+    ];
+    
 
-	public function statut()
-	{
-		return $this->belongsTo(Statut::class, 'id_status');
-	}
+    protected $fillable = [
+        'description_demande',
+        'date_commande',
+        'description_resultat',
+        'date_resultat',
+        'prix',
+        'date_travail',
+        'id',
+        'id_status'
+    ];
+    
+//  Relation avec le modèle User via la clé étrangère `id`
 
-	public function user()
-	{
-		return $this->belongsTo(User::class, 'id');
-	}
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id', 'id');
+    }
+//  Relation avec le modèle User via la clé étrangère `id`
+    public function statut()
+    {
+        return $this->belongsTo(Statut::class, 'id_status', 'id_status');
+    }
 
-	public function commentaires()
-	{
-		return $this->hasMany(Commentaire::class, 'id_demande');
-	}
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class, 'id_demande');
+    }
 
-	public function fichiers()
-	{
-		return $this->hasMany(Fichier::class, 'id_demande');
-	}
+    public function fichiers()
+    {
+        return $this->hasMany(Fichier::class, 'id_demande');
+    }
+// Relation avec le modèle Services via la clé étrangère id_demande
+    public function services()
+    {
+        return $this->belongsToMany(Service::class, 'APP_services_demandes', 'id_demande', 'id_service');
+    }
+    public function chatBoxLogs()
+    {
+        return $this->hasMany(ChatBoxLog::class, 'id_demande', 'id_demande');
+    }
+    
 
-	public function services()
-	{
-		return $this->belongsToMany(Service::class, 'APP_services_demandes', 'id_demande', 'id_service');
-	}
-
-	public function suivis()
-	{
-		return $this->hasMany(Suivi::class, 'id_demande');
-	}
+    public function suivis()
+    {
+        return $this->hasMany(Suivi::class, 'id_demande');
+    }
 }

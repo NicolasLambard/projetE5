@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Suivi extends Model
 {
-	protected $table = 'APP_suivis';
+	// protected $table = 'APP_suivis';
 	protected $primaryKey = 'id_suivi';
 	public $timestamps = false;
 

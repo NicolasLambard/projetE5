@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -32,10 +33,16 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class User extends Model
+class User extends Authenticatable
+
 {
-	protected $table = 'APP_users';
-	public $timestamps = false;
+	// protected $table = 'APP_users';
+	public $timestamps = true;
+
+	// Ajout pour plus avoir l'erreur create_at , update_at
+
+	const CREATED_AT = 'create_at'; 
+    const UPDATED_AT = 'update_at';
 
 	protected $casts = [
 		'email_verified_at' => 'datetime',
@@ -49,6 +56,7 @@ class User extends Model
 		'remember_token'
 	];
 
+	// ajout des différentes tables pour eviter les erreurs 
 	protected $fillable = [
 		'nom',
 		'prenom',
@@ -62,11 +70,15 @@ class User extends Model
 		'update_at',
 		'id_role'
 	];
+	// {
+	// 	return $this->belongsTo(Role::class, 'id_role');
+	// }
 
 	public function role()
-	{
-		return $this->belongsTo(Role::class, 'id_role');
-	}
+{
+    return $this->belongsTo(Role::class, 'id_role', 'id_role');
+}
+
 
 	public function commentaires()
 	{
@@ -75,6 +87,7 @@ class User extends Model
 
 	public function demandes()
 	{
-		return $this->hasMany(Demande::class, 'id');
+		return $this->hasMany(Demande::class, 'user_id', 'id');
 	}
+
 }

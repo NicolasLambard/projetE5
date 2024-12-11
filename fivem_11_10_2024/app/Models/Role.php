@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Role extends Model
 {
-	protected $table = 'APP_roles';
+	// protected $table = 'APP_roles';
 	protected $primaryKey = 'id_role';
 	public $timestamps = false;
 
@@ -31,6 +31,7 @@ class Role extends Model
 
 	public function users()
 	{
-		return $this->hasMany(User::class, 'id_role');
+		// return $this->hasMany(User::class, 'id_role');
+		return $this->hasMany(User::class, 'role_id', 'id');
 	}
 }

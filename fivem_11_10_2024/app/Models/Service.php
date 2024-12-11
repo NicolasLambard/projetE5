@@ -8,6 +8,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 /**
  * Class Service
@@ -23,9 +25,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Service extends Model
 {
-	protected $table = 'APP_services';
+	// protected $table = 'APP_services';
 	protected $primaryKey = 'id_service';
 	public $timestamps = false;
+	use HasFactory;
 
 	protected $casts = [
 		'prix' => 'float'
@@ -36,6 +39,8 @@ class Service extends Model
 		'description_service',
 		'prix'
 	];
+
+	
 
 	public function demandes()
 	{
