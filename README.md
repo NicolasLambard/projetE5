@@ -1,39 +1,57 @@
 # Projet ShadyCorp
 
-Bienvenue dans le projet ShadyCorp ! Suivez les étapes ci-dessous pour installer et configurer le projet.
+Bienvenue dans le projet **ShadyCorp** ! Ce guide vous aidera à installer et configurer le projet pas à pas.
+
+---
 
 ## Prérequis
 
-- **PHP** (version 7.4 ou plus récent)
-- **Composer** (gestionnaire de dépendances PHP)
-- **Git** (pour cloner le projet)
-- Un serveur local (par exemple : WAMP, XAMPP, ou Docker)
+Avant de commencer, assurez-vous d'avoir les outils suivants installés sur votre machine :
 
-## Version utilisée
+- **PHP** : Version 7.4 ou plus récente.
+- **Composer** : Gestionnaire de dépendances PHP.
+- **Git** : Pour cloner le dépôt du projet.
+- **Serveur local** : Par exemple, WAMP, XAMPP, ou Docker.
 
-Ce projet utilise **Laravel Framework 11.28.1**.
+---
+
+## Informations sur le projet
+
+Ce projet utilise le **Laravel Framework 11.28.1**.
+
+---
 
 ## Installation
 
-1. **Cloner le projet**  
-   Téléchargez le code en exécutant la commande suivante :
-   ```bash
-   git clone https://github.com/NicolasLambard/projetE5
-   cd projetE5
-   ```
+Suivez les étapes ci-dessous pour installer et configurer le projet :
 
-2. **Installer les dépendances avec Composer**  
-   Une fois dans le dossier du projet, exécutez la commande suivante pour installer toutes les dépendances du projet :  
-   ```bash
-   composer install
-   ```
+### 1. Cloner le projet
 
-3. **Configurer le fichier `.env`**  
-   Copiez le fichier `.env.example` pour créer un nouveau fichier `.env` :
+Clonez le dépôt Git du projet et accédez au dossier :
+
+```bash
+git clone https://github.com/NicolasLambard/projetE5
+cd projetE5
+```
+
+### 2. Installer les dépendances avec Composer
+
+Dans le dossier du projet, exécutez la commande suivante pour installer toutes les dépendances :
+
+```bash
+composer install
+```
+
+### 3. Configurer le fichier `.env`
+
+1. Créez un fichier `.env` en copiant le fichier `.env.example` :
+
    ```bash
    cp .env.example .env
    ```
-   Ensuite, ouvrez le fichier `.env` avec un éditeur de texte et configurez les paramètres de connexion à votre base de données en modifiant les lignes suivantes :  
+
+2. Ouvrez le fichier `.env` avec un éditeur de texte et configurez les paramètres de connexion à votre base de données :
+
    ```env
    DB_CONNECTION=mysql
    DB_HOST=127.0.0.1
@@ -42,28 +60,60 @@ Ce projet utilise **Laravel Framework 11.28.1**.
    DB_USERNAME=votre_utilisateur
    DB_PASSWORD=votre_mot_de_passe
    ```
-   **Note :** Si vous utilisez MariaDB, commentez la ligne `DB_CONNECTION=sqlite` :
-   
 
-4. **Générer la clé d'application**  
-   Générez une clé pour votre application Laravel :
-   ```bash
-   php artisan key:generate
-   ```
+3. Si vous utilisez MariaDB, commentez la ligne `DB_CONNECTION=sqlite` (si présente).
 
-5. **Migrer la base de données**  
-   Appliquez les migrations pour créer les tables nécessaires dans votre base de données :
-   ```bash
-   php artisan migrate
-   ```
+### 4. Générer la clé d'application
 
-6. **Lancer le serveur local**  
-   Pour vérifier que tout fonctionne correctement, démarrez le serveur Laravel en exécutant la commande :
-   ```bash
-   php artisan serve
-   ```
-   Accédez ensuite au projet via l'URL affichée, généralement `http://127.0.0.1:8000`.
+Générez une clé unique pour votre application Laravel :
+
+```bash
+php artisan key:generate
+```
+
+### 5. Migrer la base de données
+
+Appliquez les migrations pour créer les tables nécessaires dans la base de données :
+
+```bash
+php artisan migrate
+```
+
+### 6. Supprimer la table `APP_Users` et insérer le SQL
+
+Avant d’insérer des données SQL, supprimez la table inutile nommée `APP_Users` en retirant également ses contraintes associées. Vous pouvez utiliser la commande SQL suivante :
+
+```sql
+DROP TABLE APP_Users;
+```
+
+Ensuite, insérez le fichier SQL nommé `Application.SQL` disponible dans le projet dans votre base de données. Utilisez votre outil de gestion de base de données (par exemple, phpMyAdmin ou MySQL Workbench) pour exécuter ce fichier.
+
+Après avoir inséré les données, installez les dépendances nécessaires avec les commandes suivantes dans votre terminal :
+
+```bash
+npm install
+npm install vite --save-dev
+npm audit fix
+```
+
+
+### 7. Lancer le serveur local
+
+Démarrez le serveur Laravel pour tester le projet :
+
+```bash
+php artisan serve
+```
+
+Accédez au projet via l'URL affichée, généralement `http://127.0.0.1:8000`.
+
+---
 
 ## Félicitations !
 
-Votre projet ShadyCorp est maintenant installé et configuré. 🎉
+Votre projet **ShadyCorp** est maintenant installé et configuré. 🎉
+
+En cas de problème ou de questions, consultez la documentation officielle de Laravel ou contactez le développeur responsable du projet.
+
+Bon travail !
