@@ -64,7 +64,7 @@ class TicketController extends Controller
         $demande = Demande::with(['chatBoxLogs.user.role'])->findOrFail($id);
     
         // Vérifie si l'utilisateur est autorisé à accéder à cette demande
-        if (!($user->role->id_role === 1 || $user->role->id_role === 2 || $user->id === $demande->user_id)) {
+        if (!($user->role->id_role === 1 || $user->role->id_role === 2 || $user->id === $demande->id)) {
             abort(403, 'Vous n\'avez pas les permissions pour voir ce ticket.');
         }
     
@@ -89,8 +89,8 @@ class TicketController extends Controller
             'description_demande' => $validatedData['description'],
             'date_resultat' => $validatedData['date_resultat'],
             'prix' => $validatedData['prix'],
-            'id_status' => 1, // Par exemple, définir un statut par défaut
-            'user_id' => auth()->id(), // Associer la demande à l'utilisateur connecté
+            'id_status' => 1, 
+            'id' => auth()->id(), 
         ]);
 
         // Rediriger avec un message de succès
@@ -110,7 +110,7 @@ class TicketController extends Controller
         $demande = Demande::findOrFail($id);
     
         // Vérifie si l'utilisateur est autorisé à accéder à cette demande
-        if (!($user->role->id_role === 1 || $user->role->id_role === 2 || $user->id === $demande->user_id)) {
+        if (!($user->role->id_role === 1 || $user->role->id_role === 2 || $user->id === $demande->id)) {
             abort(403, 'Vous n\'êtes pas autorisé à envoyer un message sur ce ticket.');
         }
     

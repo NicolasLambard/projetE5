@@ -87,7 +87,7 @@ class User extends Authenticatable
 
 	public function demandes()
 	{
-		return $this->hasMany(Demande::class, 'user_id', 'id');
+		return $this->hasMany(Demande::class,'id');
 	}
 
 }
