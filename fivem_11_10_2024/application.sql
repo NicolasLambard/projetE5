@@ -119,6 +119,16 @@ CREATE TABLE `APP_services` (
 -- --------------------------------------------------------
 
 --
+-- Déchargement des données de la table `APP_services`
+--
+
+INSERT INTO `APP_services` (`id_service`, `nom_service`, `description_service`, `prix`) VALUES
+(1, 'Création d\'un environnement sur mesure (BDD,Panel admin , Base jeu)', 'Conception\r\nd\'une base adaptée aux besoins spécifiques du client.\r\n', 50.000000),
+(2, 'Création d\'un script complet sur mesure selon les besoins du client', 'Sélection du\r\nframework : ESX-Legacy [FiveM] – Dernière version', 80.000000),
+(3, 'Débogage de script', 'Analyse et correction du script pour résoudre\r\nles erreurs et améliorer la performance', 20.000000);
+
+--
+--
 -- Structure de la table `APP_services_demandes`
 --
 
