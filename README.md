@@ -85,7 +85,7 @@ php artisan migrate
 Avant d’insérer des données SQL, supprimez la table inutile nommée `APP_Users` en retirant également ses contraintes associées. Vous pouvez utiliser la commande SQL suivante :
 
 ```sql
-DROP TABLE APP_Users;
+DROP TABLE APP_users;
 ```
 
 Ensuite, insérez le fichier SQL nommé `Application.SQL` disponible dans le projet dans votre base de données. Utilisez votre outil de gestion de base de données (par exemple, phpMyAdmin ou MySQL Workbench) pour exécuter ce fichier.
