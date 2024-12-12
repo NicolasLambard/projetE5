@@ -58,7 +58,8 @@ composer install
    DB_PORT=3306
    DB_DATABASE=nom_de_votre_base_de_donnees
    DB_USERNAME=votre_utilisateur
-   DB_PASSWORD=votre_mot_de_passe
+   DB_PASSWORD=votre_mot_de_pass
+   DB_TABLE_PREFIX = APP_
    ```
 
 3. Si vous utilisez MariaDB, commentez la ligne `DB_CONNECTION=sqlite` (si présente).
