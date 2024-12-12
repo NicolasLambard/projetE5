@@ -96,6 +96,7 @@ Après avoir inséré les données, installez les dépendances nécessaires avec
 npm install
 npm install vite --save-dev
 npm audit fix
+npm run build
 ```
 
 
