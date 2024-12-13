@@ -23,7 +23,7 @@
     </header>
 
     <section class="hero">
-        <h1>Mes Tickets</h1>
+        <h1>Les Tickets</h1>
         <p>Liste des demandes de service associées.</p>
     </section>
 
