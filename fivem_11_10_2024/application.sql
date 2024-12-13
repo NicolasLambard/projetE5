@@ -218,9 +218,9 @@ CREATE TABLE `APP_users` (
 --
 
 INSERT INTO `APP_users` (`id`, `nom`, `prenom`, `email`, `email_verified_at`, `telephone`, `name`, `password`, `remember_token`, `create_at`, `update_at`, `id_role`) VALUES
-(13, 'superadmin', 'superadmin', 'superadmin@gmail.com', '2024-12-13 12:19:34', '0637136978', 'superadmin', '$2y$12$AIN/nV/pCRtX/ngeYEfYxu05o1X1Ou.G4LYLFrAKvDYd0fj7VVBou', 'yRN21GRH4PNqHNYgb4FCBopYlGsbbu1HdkUzB4KsPwSH0uztE3PshTWLpYJY', '2024-12-13 11:12:36', '2024-12-13 11:12:36', 1),
+(13, 'superadmin', 'superadmin', 'superadmin@gmail.com', '2024-12-13 12:19:34', '0621459865', 'superadmin', '$2y$12$AIN/nV/pCRtX/ngeYEfYxu05o1X1Ou.G4LYLFrAKvDYd0fj7VVBou', 'yRN21GRH4PNqHNYgb4FCBopYlGsbbu1HdkUzB4KsPwSH0uztE3PshTWLpYJY', '2024-12-13 11:12:36', '2024-12-13 11:12:36', 1),
 (14, 'Gestionnaire', 'Gestionnaire', 'gestionnaire@gmail.com', '2024-12-13 12:22:36', '0632145896', 'Gestionnaire', '$2y$12$MPOPpyqACpyMnGgQn93niuSE7sR2c6PSCCqP6JV/hWSTMorQU3xOe', 'RpbUMixcgw', '2024-12-13 11:14:12', '2024-12-13 11:14:12', 2),
-(15, 'Lambard', 'Nicolas', 'lambard36@gmail.com', '2024-12-13 12:22:29', '0689478596', 'Nicoo', '$2y$12$X6sZ1CrUiI3x7aG4qWKRlOtgiz8DzV7rPyP3f..aNscuM0qaqqF.e', 'ahVwcxalRCNcMWJO8FO9JWw9MkPYXzw0VspOzZ7u7vQA6MlyMARacNU3GGxC', '2024-12-13 11:16:25', '2024-12-13 11:16:25', 3),
+(15, 'dev', 'Nicolas', 'nicoodev@gmail.com', '2024-12-13 12:22:29', '0689478596', 'Nicoo', '$2y$12$X6sZ1CrUiI3x7aG4qWKRlOtgiz8DzV7rPyP3f..aNscuM0qaqqF.e', 'ahVwcxalRCNcMWJO8FO9JWw9MkPYXzw0VspOzZ7u7vQA6MlyMARacNU3GGxC', '2024-12-13 11:16:25', '2024-12-13 11:16:25', 3),
 (16, 'Durant', 'Tom', 'tomdurant@gmail.com', '2024-12-13 12:22:20', '0657896547', 'TomDurant', '$2y$12$HDhTl24ZoQ/K9QYL0UkY.eyXtEuSpaf4NDJ8IZUzzoNN4zeBYampS', 'C91pSijXxs', '2024-12-13 11:21:12', '2024-12-13 11:21:12', 3);
 
 --
