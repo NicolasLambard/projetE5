@@ -32,6 +32,7 @@ Clonez le dépôt Git du projet et accédez au dossier :
 ```bash
 git clone https://github.com/NicolasLambard/projetE5
 cd projetE5
+cd fivem_11_10_2024
 ```
 
 ### 2. Installer les dépendances avec Composer
