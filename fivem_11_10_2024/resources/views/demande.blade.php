@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faire une Demande de Service - ShadyCorp</title>
     <link rel="stylesheet" href="{{ asset('styles/demande.css') }}">
+    <style>
+        /* Couleurs d'origine restaurées */
+        header {
+            background-color: #333;
+        }
+        
+        .hero {
+            background-color: #3498db;
+        }
+        
+        .btn-primary {
+            background-color: #3498db;
+        }
+        
+        footer {
+            background-color: #333;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -12,8 +30,13 @@
             <div class="logo">ShadyCorp</div>
             <ul>
                 <li><a href="{{ url('/') }}">Accueil</a></li>
+                <li><a href="{{ url('/demande') }}">Demande</a></li>
                 <li><a href="{{ url('/services') }}">Services</a></li>
                 <li><a href="{{ route('ticket') }}">Mes Tickets</a></li>
+                <li><a href="{{ route('commentaires') }}">Commentaires</a></li>
+                @if(auth()->user()->role->id_role === 1 || auth()->user()->role->id_role === 2)
+                    <li><a href="{{ route('ticket.all') }}">Voir tous les tickets</a></li>
+                @endif
             </ul>
         </nav>
     </header>

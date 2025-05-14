@@ -26,16 +26,11 @@ use Illuminate\Database\Eloquent\Model;
  */	
 class Commentaire extends Model
 {
-    // Nom de la table
     // protected $table = 'APP_commentaires';
-
-    // Clé primaire
     protected $primaryKey = 'id_commentaire';
 
-// Désactive la gestion automatique des colonnes created_at et updated_at
     public $timestamps = false;
 
-    // Cela protège contre l'injection de données non autorisées sinon laravel autorise rien
     protected $fillable = [
         'description',
         'date',
@@ -44,15 +39,18 @@ class Commentaire extends Model
         'id',
     ];
 
-// Relation avec le modèle Demande via la clé étrangère id_demande
  public function demande()
     {
         return $this->belongsTo(Demande::class, 'id_demande');
     }
 
-// Relation avec le modèle User via la clé étrangère id_demande
  public function user()
     {
         return $this->belongsTo(User::class, 'id');
+    }
+
+ public static function peutValider($user)
+    {
+        return $user && ($user->role->id_role === 1 || $user->role->id_role === 2);
     }
 }

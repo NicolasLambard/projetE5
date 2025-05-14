@@ -22,6 +22,7 @@ nav {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    height: 60px; /* Hauteur fixe pour la navbar */
 }
 
 .logo {
@@ -34,10 +35,13 @@ nav ul {
     display: flex;
     list-style: none;
     margin-left: auto;
+    height: 100%; /* Prend toute la hauteur de la navbar */
 }
 
 nav ul li {
     margin: 0 0.5rem;
+    display: flex;
+    align-items: center; /* Centre verticalement */
 }
 
 nav ul li a {

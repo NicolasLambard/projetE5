@@ -39,7 +39,6 @@ class User extends Authenticatable
 	// protected $table = 'APP_users';
 	public $timestamps = true;
 
-	// Ajout pour plus avoir l'erreur create_at , update_at
 
 	const CREATED_AT = 'create_at'; 
     const UPDATED_AT = 'update_at';
@@ -56,7 +55,6 @@ class User extends Authenticatable
 		'remember_token'
 	];
 
-	// ajout des différentes tables pour eviter les erreurs 
 	protected $fillable = [
 		'nom',
 		'prenom',
@@ -70,9 +68,6 @@ class User extends Authenticatable
 		'update_at',
 		'id_role'
 	];
-	// {
-	// 	return $this->belongsTo(Role::class, 'id_role');
-	// }
 
 	public function role()
 {

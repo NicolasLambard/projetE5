@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShadyCorp</title>
     <link rel="stylesheet" href="{{ asset('styles/services.css') }}">
+    <style>
+        /* Couleurs d'origine restaurées */
+        header {
+            background-color: #333;
+        }
+        
+        .hero {
+            background-color: #3498db;
+        }
+        
+        .btn-contact {
+            background-color: #3498db;
+        }
+        
+        .btn-back {
+            background-color: #e74c3c;
+        }
+        
+        footer {
+            background-color: #333;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -13,7 +35,12 @@
             <ul>
                 <li><a href="{{ url('/') }}">Accueil</a></li>
                 <li><a href="{{ url('/demande') }}">Demande</a></li>
+                <li><a href="{{ url('/services') }}">Services</a></li>
                 <li><a href="{{ route('ticket') }}">Mes Tickets</a></li>
+                <li><a href="{{ route('commentaires') }}">Commentaires</a></li>
+                @if(auth()->user()->role->id_role === 1 || auth()->user()->role->id_role === 2)
+                    <li><a href="{{ route('ticket.all') }}">Voir tous les tickets</a></li>
+                @endif
             </ul>
         </nav>
     </header>

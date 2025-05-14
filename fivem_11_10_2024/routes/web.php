@@ -7,17 +7,14 @@ use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\ProfileController;
 
-// Accueil
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Tickets
 Route::get('/ticket', [TicketController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('ticket');
@@ -32,7 +29,7 @@ Route::get('/ticket/{id}/chatbox', [TicketController::class, 'chatbox'])
 
 Route::post('/ticket/{id}/send-message', [TicketController::class, 'sendMessage'])
     ->middleware(['auth', 'verified'])
-    ->name('ticket.sendMessage'); // Correspond a la fonction dans ticketController 
+    ->name('ticket.sendMessage'); 
 
 Route::get('/ticket/{id}/edit', [TicketController::class, 'edit'])
     ->middleware(['auth', 'verified'])
@@ -47,10 +44,30 @@ Route::delete('/ticket/{id}', [TicketController::class, 'destroy'])
     ->name('ticket.destroy');
 
 Route::get('/ticketall', [TicketController::class, 'allTickets'])
-    ->middleware(['auth', 'verified', 'can:see-all-tickets'])
+    ->middleware(['auth', 'verified'])
     ->name('ticket.all');
 
-// Demandes
+Route::post('/ticket/{id}/accepter', [TicketController::class, 'accepterCommande'])
+    ->middleware(['auth', 'verified'])
+    ->name('ticket.accepter');
+
+
+Route::get('/ticket/{id}/details', [TicketController::class, 'details'])
+    ->middleware(['auth', 'verified'])
+    ->name('ticket.details');
+
+Route::post('/commentaire/{id_commentaire}/valider', [TicketController::class, 'validerCommentaire'])
+    ->middleware(['auth', 'verified'])
+    ->name('commentaire.valider');
+
+Route::delete('/commentaire/{id_commentaire}', [TicketController::class, 'supprimerCommentaire'])
+    ->middleware(['auth', 'verified'])
+    ->name('commentaire.supprimer');
+
+Route::post('/ticket/{id}/commentaire-admin', [TicketController::class, 'ajouterCommentaireAdmin'])
+    ->middleware(['auth', 'verified'])
+    ->name('ticket.commentaire.admin');
+
 Route::get('/demande', function () {
     $services = Service::all();
     return view('demande', compact('services'));
@@ -68,17 +85,18 @@ Route::post('/demande/{id}/send-message', [TicketController::class, 'sendMessage
     ->middleware(['auth', 'verified'])
     ->name('sendMessage');
 
-// Services
 Route::get('/services', function () {
     return view('services');
 })->middleware(['auth', 'verified'])->name('services');
 
-// Profile utilisateur
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Authentification
 require __DIR__.'/auth.php';
+
+Route::get('/commentaires', [TicketController::class, 'listeCommentaires'])
+    ->middleware(['auth', 'verified'])
+    ->name('commentaires');

@@ -16,12 +16,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Statut extends Model
 {
-    // Nom de la table associée
     // protected $table = 'APP_statuts'; 
-    protected $primaryKey = 'id_status'; // Clé primaire personnalisée
-    public $timestamps = false; // Indique qu'il n'y a pas de colonnes created_at et updated_at
+    protected $primaryKey = 'id_status'; 
+    public $timestamps = false;
 
-    // Champs modifiables via fillable
     protected $fillable = [
         'label'
     ];
@@ -46,7 +44,6 @@ class Statut extends Model
 
     /**
      * Relation avec les tickets
-     * Si tu utilises un modèle Ticket et qu'il a une colonne id_status
      */
     public function tickets()
     {

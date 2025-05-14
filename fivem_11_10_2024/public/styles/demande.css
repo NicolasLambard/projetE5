@@ -29,6 +29,7 @@ nav {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    height: 60px;
 }
 
 .logo {
@@ -41,10 +42,13 @@ nav ul {
     display: flex;
     list-style: none;
     margin-left: auto;
+    height: 100%;
 }
 
 nav ul li {
     margin: 0 0.5rem;
+    display: flex;
+    align-items: center;
 }
 
 nav ul li a {

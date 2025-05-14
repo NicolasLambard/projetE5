@@ -15,6 +15,9 @@
                 <li><a href="{{ url('/services') }}">Service</a></li>
                 <li><a href="{{ url('/demande') }}">Demande</a></li>
                 <li><a href="{{ route('ticket') }}">Mes Tickets</a></li>
+                @if(auth()->user()->role->id_role === 1 || auth()->user()->role->id_role === 2)
+                    <li><a href="{{ route('ticket.all') }}">Voir tous les tickets</a></li>
+                @endif
             </ul>
         </nav>
     </header>
