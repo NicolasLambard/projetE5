@@ -8,7 +8,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/services');
 });
 
 Route::get('/dashboard', function () {

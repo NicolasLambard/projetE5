@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ServicesDemande extends Model
 {
-	// protected $table = 'APP_services_demandes';
+	protected $table = 'services_demandes';
 	public $incrementing = false;
 	public $timestamps = false;
 
@@ -44,6 +44,6 @@ class ServicesDemande extends Model
 
 	public function suivis()
 	{
-		return $this->hasMany(Suivi::class, 'id_service_APP_services_demandes');
+		return $this->hasMany(Suivi::class, 'id_service_services_demandes');
 	}
 }

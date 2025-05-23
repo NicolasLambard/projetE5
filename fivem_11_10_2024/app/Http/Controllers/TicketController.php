@@ -8,6 +8,7 @@ use App\Models\ChatBoxLog;
 use App\Models\Statut;
 use App\Models\Ticket;
 use App\Models\Commentaire;
+use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
 {
@@ -178,19 +179,43 @@ class TicketController extends Controller
      * Supprimer un ticket
      */
     public function destroy($id)
-{
-    $demande = Demande::findOrFail($id);
+    {
+        $demande = Demande::findOrFail($id);
 
-    if (!auth()->user()->role || !(auth()->user()->role->id_role === 1 || auth()->user()->role->id_role === 2)) {
-        abort(403, 'Vous n\'êtes pas autorisé à supprimer ce ticket.');
+        if (!auth()->user()->role || !(auth()->user()->role->id_role === 1 || auth()->user()->role->id_role === 2)) {
+            abort(403, 'Vous n\'êtes pas autorisé à supprimer ce ticket.');
+        }
+
+        try {
+            // Désactiver temporairement les contraintes de clés étrangères
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+            
+            // Supprimer d'abord les commentaires associés
+            $demande->commentaires()->delete();
+            
+            // Supprimer les logs de chatbox
+            $demande->chatBoxLogs()->delete();
+            
+            // Supprimer les fichiers associés
+            $demande->fichiers()->delete();
+            
+            // Supprimer les suivis associés
+            $demande->suivis()->delete();
+            
+            // Supprimer directement la demande sans se soucier des relations many-to-many
+            $demande->delete();
+            
+            // Réactiver les contraintes de clés étrangères
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+            
+            return redirect()->route('ticket')->with('success', 'Ticket supprimé avec succès.');
+        } catch (\Exception $e) {
+            // Réactiver les contraintes de clés étrangères en cas d'erreur
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+            
+            return redirect()->route('ticket')->with('error', 'Erreur lors de la suppression du ticket: ' . $e->getMessage());
+        }
     }
-
-    $demande->chatBoxLogs()->delete();
-
-    $demande->delete();
-
-    return redirect()->route('ticket')->with('success', 'Ticket supprimé avec succès.');
-}
 
     public function showTickets()
     {

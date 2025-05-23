@@ -88,7 +88,7 @@ class Demande extends Model
 // Relation avec le modèle Services via la clé étrangère id_demande
     public function services()
     {
-        return $this->belongsToMany(Service::class, 'APP_services_demandes', 'id_demande', 'id_service');
+        return $this->belongsToMany(Service::class, 'services_demandes', 'id_demande', 'id_service');
     }
     public function chatBoxLogs()
     {

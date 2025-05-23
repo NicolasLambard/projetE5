@@ -44,6 +44,6 @@ class Service extends Model
 
 	public function demandes()
 	{
-		return $this->belongsToMany(Demande::class, 'APP_services_demandes', 'id_service', 'id_demande');
+		return $this->belongsToMany(Demande::class, 'services_demandes', 'id_service', 'id_demande');
 	}
 }

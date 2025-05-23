@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbox - Demande #{{ $demande->id_demande }}</title>
-    <link rel="stylesheet" href="{{ asset('styles/chatbox.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>@yield('title', 'ShadyCorp')</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('styles/'.($styles ?? 'main').'.css') }}">
     <style>
         /* Styles globaux */
         * {
@@ -17,7 +20,7 @@
         html, body {
             height: 100%;
             margin: 0;
-            background-color: #f9f9f9;
+            background-color: #f5f5f5;
             color: #333;
         }
         
@@ -82,14 +85,7 @@
             color: #3498db;
         }
         
-        /* Reste des styles */
-        main {
-            flex: 1;
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 20px;
-        }
-        
+        /* Footer */
         footer {
             background-color: #333;
             color: white;
@@ -97,6 +93,9 @@
             padding: 1.5rem 0;
             margin-top: auto;
         }
+        
+        /* Styles additionnels */
+        @yield('styles')
     </style>
 </head>
 <body>
@@ -123,36 +122,13 @@
     </header>
 
     <main>
-        <section class="hero">
-            <h1>Chatbox pour la demande #{{ $demande->id_demande }}</h1>
-            <p>Communiquez facilement avec le support ou l'administrateur.</p>
-        </section>
-
-        <section class="chat-messages">
-            @foreach ($demande->chatBoxLogs as $log)
-                <div class="chat-message 
-                    {{ $log->user->role->id_role === 1 || $log->user->role->id_role === 2 ? 'admin-message' : 'client-message' }}">
-                    <strong>
-                        {{ $log->user->name ?? 'Utilisateur inconnu' }}
-                        ({{ $log->user->role->nom ?? 'Rôle inconnu' }}):
-                    </strong>
-                    <p>{{ $log->description }}</p>
-                    <small>{{ $log->date }}</small>
-                </div>
-            @endforeach
-        </section>
-
-        <section class="chat-form">
-            <form action="{{ route('sendMessage', $demande->id_demande) }}" method="POST">
-                @csrf
-                <textarea name="message" rows="3" placeholder="Écrivez votre message ici..." required></textarea>
-                <button type="submit">Envoyer</button>
-            </form>
-        </section>
+        @yield('content')
     </main>
 
     <footer>
         <p>&copy; {{ date('Y') }} ShadyCorp. Tous droits réservés.</p>
     </footer>
+
+    @yield('scripts')
 </body>
-</html>
+</html> 
