@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : ven. 13 déc. 2024 à 13:25
--- Version du serveur : 10.11.6-MariaDB-0+deb12u1
--- Version de PHP : 8.2.26
+-- Généré le : ven. 23 mai 2025 à 11:59
+-- Version du serveur : 10.11.11-MariaDB-0+deb12u1
+-- Version de PHP : 8.2.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,36 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `lambardn_retestprojet`
+-- Base de données : `lambardn_avril`
 --
-
--- --------------------------------------------------------
-
---
--- Structure de la table `APP_cache`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `APP_chat_box_logs`
---
-
-CREATE TABLE `APP_chat_box_logs` (
-  `id_chatbox` int(11) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `date` datetime NOT NULL,
-  `valide` tinyint(1) NOT NULL,
-  `id_demande` int(11) NOT NULL,
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `APP_chat_box_logs`
---
-
-INSERT INTO `APP_chat_box_logs` (`id_chatbox`, `description`, `date`, `valide`, `id_demande`, `id`) VALUES
-(34, 'test', '2024-12-13 12:19:03', 1, 27, 15);
 
 -- --------------------------------------------------------
 
@@ -63,6 +35,14 @@ CREATE TABLE `APP_commentaires` (
   `id_demande` int(11) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `APP_commentaires`
+--
+
+INSERT INTO `APP_commentaires` (`id_commentaire`, `description`, `date`, `valide`, `id_demande`, `id`) VALUES
+(15, 'test', '2025-05-23 09:26:36', 1, 40, 21),
+(16, 'Merci', '2025-05-23 09:27:20', 1, 40, 14);
 
 -- --------------------------------------------------------
 
@@ -87,8 +67,8 @@ CREATE TABLE `APP_demandes` (
 --
 
 INSERT INTO `APP_demandes` (`id_demande`, `description_demande`, `date_commande`, `description_resultat`, `date_resultat`, `prix`, `date_travail`, `id`, `id_status`) VALUES
-(27, 'Je suis intéressé par la création du', '2024-12-13 12:18:58', 'Création d\'un environnement sur mesure (BDD,Panel admin , Base jeu)', '2024-12-15 00:00:00', 301.000000, '2024-12-13 12:18:58', 15, 2),
-(28, 'J\'ai un problème avec mon scrcipt', '2024-12-13 12:21:46', 'Débogage de script', '2024-12-15 00:00:00', 100.000000, '2024-12-13 12:21:46', 16, 1);
+(39, 'test', '2025-05-23 09:22:09', 'Création d\'un script complet sur mesure selon les besoins du client', '2025-07-10 00:00:00', 200.000000, '2025-05-23 09:22:09', 20, 1),
+(40, 'aaaaaaa', '2025-05-23 09:24:49', 'Débogage de script', '2025-06-23 00:00:00', 20.000000, '2025-05-23 09:24:49', 21, 2);
 
 -- --------------------------------------------------------
 
@@ -104,6 +84,8 @@ CREATE TABLE `APP_fichiers` (
   `auteur_client` tinyint(1) NOT NULL,
   `id_demande` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `APP_roles`
@@ -156,6 +138,7 @@ CREATE TABLE `APP_services_demandes` (
   `id_demande` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `APP_statuts`
@@ -218,24 +201,14 @@ CREATE TABLE `APP_users` (
 --
 
 INSERT INTO `APP_users` (`id`, `nom`, `prenom`, `email`, `email_verified_at`, `telephone`, `name`, `password`, `remember_token`, `create_at`, `update_at`, `id_role`) VALUES
-(13, 'superadmin', 'superadmin', 'superadmin@gmail.com', '2024-12-13 12:19:34', '0621459865', 'superadmin', '$2y$12$AIN/nV/pCRtX/ngeYEfYxu05o1X1Ou.G4LYLFrAKvDYd0fj7VVBou', 'yRN21GRH4PNqHNYgb4FCBopYlGsbbu1HdkUzB4KsPwSH0uztE3PshTWLpYJY', '2024-12-13 11:12:36', '2024-12-13 11:12:36', 1),
-(14, 'Gestionnaire', 'Gestionnaire', 'gestionnaire@gmail.com', '2024-12-13 12:22:36', '0632145896', 'Gestionnaire', '$2y$12$MPOPpyqACpyMnGgQn93niuSE7sR2c6PSCCqP6JV/hWSTMorQU3xOe', 'RpbUMixcgw', '2024-12-13 11:14:12', '2024-12-13 11:14:12', 2),
-(15, 'dev', 'Nicolas', 'nicoodev@gmail.com', '2024-12-13 12:22:29', '0689478596', 'Nicoo', '$2y$12$X6sZ1CrUiI3x7aG4qWKRlOtgiz8DzV7rPyP3f..aNscuM0qaqqF.e', 'ahVwcxalRCNcMWJO8FO9JWw9MkPYXzw0VspOzZ7u7vQA6MlyMARacNU3GGxC', '2024-12-13 11:16:25', '2024-12-13 11:16:25', 3),
-(16, 'Durant', 'Tom', 'tomdurant@gmail.com', '2024-12-13 12:22:20', '0657896547', 'TomDurant', '$2y$12$HDhTl24ZoQ/K9QYL0UkY.eyXtEuSpaf4NDJ8IZUzzoNN4zeBYampS', 'C91pSijXxs', '2024-12-13 11:21:12', '2024-12-13 11:21:12', 3);
+(13, 'superadmin', 'superadmin', 'superadmin@gmail.com', '2025-05-23 09:25:42', '0621459865', 'superadmin', '$2y$12$AIN/nV/pCRtX/ngeYEfYxu05o1X1Ou.G4LYLFrAKvDYd0fj7VVBou', 'YTFMXwO8tODVqb29qeoPakV9VX9MDvzkXNXwAuuEL9uQB66CCQKCnr5q97Ai', '2024-12-13 11:12:36', '2024-12-13 11:12:36', 1),
+(14, 'Gestionnaire', 'Gestionnaire', 'gestionnaire@gmail.com', '2025-05-23 09:21:39', '0632145896', 'Gestionnaire', '$2y$12$MPOPpyqACpyMnGgQn93niuSE7sR2c6PSCCqP6JV/hWSTMorQU3xOe', '7Q3n41eolyKIYhxd9nJiqpzKkRnc1oK8nJtDlYnGx7peov9vmfaPK0Blv9FX', '2024-12-13 11:14:12', '2024-12-13 11:14:12', 2),
+(20, 'Nicolas', 'Lambard', 'nicolas@gmail.com', '2025-05-23 09:22:51', '0678479874', 'Nicoo', '$2y$12$.CHAu.YAJm09YeN2qJ0snOBw75k3ZbXRK.xiAZMrFHgVioQs9MYAC', '50kyjHd1eCeyQL49CfFSDYVLjSoEwLS2GFl3n0qNrmYe2zscswOZN4fOzSaJ', '2025-05-23 07:20:27', '2025-05-23 07:20:27', 3),
+(21, 'tom', 'Durant', 'tom@gmail.com', '2025-05-23 09:26:06', 'Durant', 'Tom', '$2y$12$ilkykXhShjRVzVxx7IcE2e2ula1C68uEC1eJ/TdmJTENepCBAhrgy', 'GVxphf319bwUPljzGHcoVKNZy2SFsRiLpuAMdcv3XKxlBmmvohovadX7dAb9', '2025-05-23 07:23:25', '2025-05-23 07:23:25', 3);
 
 --
 -- Index pour les tables déchargées
 --
-
-
-
---
--- Index pour la table `APP_chat_box_logs`
---
-ALTER TABLE `APP_chat_box_logs`
-  ADD PRIMARY KEY (`id_chatbox`),
-  ADD KEY `APP_chat_box_logs_APP_demandes_FK` (`id_demande`),
-  ADD KEY `APP_chat_box_logs_APP_users0_FK` (`id`);
 
 --
 -- Index pour la table `APP_commentaires`
@@ -253,14 +226,12 @@ ALTER TABLE `APP_demandes`
   ADD KEY `APP_demandes_APP_users_FK` (`id`),
   ADD KEY `APP_demandes_APP_statuts0_FK` (`id_status`);
 
-
 --
 -- Index pour la table `APP_fichiers`
 --
 ALTER TABLE `APP_fichiers`
   ADD PRIMARY KEY (`id_fichier`),
   ADD KEY `APP_fichiers_APP_demandes_FK` (`id_demande`);
-
 
 --
 -- Index pour la table `APP_roles`
@@ -308,29 +279,22 @@ ALTER TABLE `APP_users`
 --
 
 --
--- AUTO_INCREMENT pour la table `APP_chat_box_logs`
---
-ALTER TABLE `APP_chat_box_logs`
-  MODIFY `id_chatbox` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
 -- AUTO_INCREMENT pour la table `APP_commentaires`
 --
 ALTER TABLE `APP_commentaires`
-  MODIFY `id_commentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_commentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `APP_demandes`
 --
 ALTER TABLE `APP_demandes`
-  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT pour la table `APP_fichiers`
 --
 ALTER TABLE `APP_fichiers`
   MODIFY `id_fichier` int(11) NOT NULL AUTO_INCREMENT;
-
 
 --
 -- AUTO_INCREMENT pour la table `APP_roles`
@@ -360,18 +324,11 @@ ALTER TABLE `APP_suivis`
 -- AUTO_INCREMENT pour la table `APP_users`
 --
 ALTER TABLE `APP_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Contraintes pour les tables déchargées
 --
-
---
--- Contraintes pour la table `APP_chat_box_logs`
---
-ALTER TABLE `APP_chat_box_logs`
-  ADD CONSTRAINT `APP_chat_box_logs_APP_demandes_FK` FOREIGN KEY (`id_demande`) REFERENCES `APP_demandes` (`id_demande`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `APP_chat_box_logs_APP_users0_FK` FOREIGN KEY (`id`) REFERENCES `APP_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `APP_commentaires`
