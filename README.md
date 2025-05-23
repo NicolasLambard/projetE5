@@ -113,6 +113,26 @@ Accédez au projet via l'URL affichée, généralement `http://127.0.0.1:8000`.
 
 ---
 
+### Compte Admin
+```bash
+Superadmin
+superadmin@gmail.com
+M2p_Superadmin
+
+Gestionnaire
+gestionnaire@gmail.com
+M2p_Gestionnaire
+
+client
+nicolas@gmail.com
+M2p_Nicolas
+client
+
+client
+tom@gmail.com
+M2p_Tomdurant
+```
+
 ## Félicitations !
 
 Votre projet **ShadyCorp** est maintenant installé et configuré. 🎉
